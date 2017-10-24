@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "UIImage+GIF.h"
 #import "UIImageView+WebCache.h"
 #import "FLAnimatedImageView.h"
 #import "FLAnimatedImage.h"
@@ -30,9 +29,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self SDLoadLocalGif];
+//    [self SDLoadLocalGif];
     
-//    [self SDLoadNetwarkGif];
+    [self SDLoadNetwarkGif];
     
 //    [self webViewLoadGif];
     
@@ -53,7 +52,10 @@
 
 -(void)SDLoadNetwarkGif {
     FLAnimatedImageView *gifView = [[FLAnimatedImageView alloc] initWithFrame:self.view.bounds];
-    [gifView sd_setImageWithURL:[NSURL URLWithString:@"http://img4.duitang.com/uploads/item/201211/24/20121124112047_KUFxK.gif"]];
+//    NSString *urlStr = @"http://img4.duitang.com/uploads/item/201211/24/20121124112047_KUFxK.gif";
+    NSString *urlStr = @"http://7jpnak.com1.z0.glb.clouddn.com/-2_1508812812584_扭蛋机动效3.gif";
+    urlStr = [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    [gifView sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
     gifView.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:gifView];
 }
